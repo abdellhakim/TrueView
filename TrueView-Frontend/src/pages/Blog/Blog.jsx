@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/logo.png";
-import logina1 from "../../assets/logina1.png";
-import { Button } from "../../components/ui/button.jsx";
-import { Input } from "../../components/ui/input.jsx";
-import { Label } from "../../components/ui/label.jsx";
-import google from "../../assets/google.png";
+import postcard from "../../assets/postcard.png";
+import Rectangle38 from "../../assets/Rectangle 38.png";
+
+
+
 
 export const Blog = () => {
+  const [visiblePosts, setVisiblePosts] = useState(6);
+
+  // Fonction pour charger plus d'articles
+  const loadMorePosts = () => {
+    setVisiblePosts(prevVisiblePosts => prevVisiblePosts + 3);
+  }
+
+  
   return (
     <div className="font-sans">
     {/* En-tête */}
@@ -24,9 +32,9 @@ export const Blog = () => {
         </nav>
       </div>
       <div className="flex space-x-2">
-        <button className="bg-white text-blue-600 px-4 py-2 rounded border border-blue-600 hover:bg-white-700">
+        <a href="" className="bg-white text-blue-600 px-4 py-2 rounded border border-blue-600 hover: border-black">
           Get a demo
-        </button>
+        </a>
         <a href="/Login" className="bg-blue-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700">
           Register
         </a>
@@ -35,26 +43,37 @@ export const Blog = () => {
 
 
     {/* Section principale - Blog */}
-    <main className="container mx-auto p-4">
+    <main className="mx-auto max-w-[1400px] p-4">
       <h1 className="text-3xl font-bold mb-6 text-center">Blog</h1>
 
       {/* Bannière principale */}
-      <div className="mb-8">
-        <img src="https://via.placeholder.com/1200x400" alt="Featured Post" className="w-full h-64 object-cover rounded-lg"/>
-        <h2 className="text-2xl font-bold mt-4">The Impact of Technology on the Workplace: How Technology is Changing</h2>
-        <div className="flex items-center text-gray-600 mt-2">
-          <img src="https://via.placeholder.com/40" alt="Author" className="w-6 h-6 rounded-full"/>
-          <span className="ml-2">John Doe</span>
-          <span className="ml-4">October 10, 2023</span>
-          <span className="ml-4">5 Comments</span>
+      <div className="relative mb-8">
+        <a href="#">
+          <img src={postcard} alt="postcard" className="w-full h-[500px] object-cover rounded-lg" />
+        </a>
+
+        {/* Superposition de contenu */}
+        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 text-white rounded-lg">
+          {/* Badge Technology */}
+          <span className="bg-blue-500 text-white px-3 py-1 text-sm rounded-md">Technology</span>
+
+          {/* Titre de l'article */}
+          <h2 className="text-2xl font-bold mt-2">The Impact of Technology on the Workplace: How Technology is Changing</h2>
+
+          {/* Infos de l'auteur */}
+          <div className="flex items-center text-gray-300 mt-2">
+            <img src="https://via.placeholder.com/40" alt="Author" className="w-6 h-6 rounded-full border border-white" />
+            <span className="ml-2">Tracey Wilson</span>
+            <span className="ml-4">August 20, 2022</span>
+          </div>
         </div>
       </div>
 
       {/* Liste des articles */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(visiblePosts)].map((_, i) => (
           <div key={i} className="bg-white shadow rounded-lg overflow-hidden">
-            <img src="https://via.placeholder.com/400x200" alt="Blog Post" className="w-full h-48 object-cover"/>
+            <img src={Rectangle38} alt="Blog Post" className="w-full h-48 object-cover"/>
             <div className="p-4">
               <span className="text-sm text-blue-600">Technology</span>
               <h3 className="text-xl font-bold mt-2">The Impact of Technology on the Workplace</h3>
@@ -70,7 +89,7 @@ export const Blog = () => {
 
       {/* Bouton de chargement */}
       <div className="flex justify-center mt-8">
-        <button className="bg-white text-gray-600 px-6 py-2 rounded border  hover:bg-blue-700 hover:text-white">Load More</button>
+        <button onClick={loadMorePosts} className="bg-white text-gray-600 px-6 py-2 rounded border  hover:bg-blue-700 hover:text-white">Load More</button>
       </div>
     </main>
 
@@ -117,10 +136,10 @@ export const Blog = () => {
           <div>
               <h4 class="text-lg font-semibold mb-3">Connect</h4>
               <ul class="space-y-2">
-                  <li><a href="#" class="flex items-center space-x-2 hover:underline"><span>📷</span> <span>Instagram</span></a></li>
-                  <li><a href="#" class="flex items-center space-x-2 hover:underline"><span>📘</span> <span>Facebook</span></a></li>
-                  <li><a href="#" class="flex items-center space-x-2 hover:underline"><span>✖</span> <span>Twitter / X</span></a></li>
-                  <li><a href="#" class="flex items-center space-x-2 hover:underline"><span>💼</span> <span>LinkedIn</span></a></li>
+                  <li><a href="https://www.instagram.com/" class="flex items-center space-x-2 hover:underline"><span>📷</span> <span>Instagram</span></a></li>
+                  <li><a href="https://www.facebook.com/" class="flex items-center space-x-2 hover:underline"><span>📘</span> <span>Facebook</span></a></li>
+                  <li><a href="https://x.com/?lang=fr" class="flex items-center space-x-2 hover:underline"><span>✖</span> <span>Twitter / X</span></a></li>
+                  <li><a href="https://www.linkedin.com/" class="flex items-center space-x-2 hover:underline"><span>💼</span> <span>LinkedIn</span></a></li>
               </ul>
           </div>
 
