@@ -11,26 +11,26 @@ export const Signup = () => {
     <div className='flex h-screen'>
 
       <div className='w-full md:w-1/2 flex flex-col justify-center items-start px-16'>
-         <a href="/" className="mb-10">
+         <a href="/" className="mb-5 ">
                   <img src={logo} alt="TrueView-logo" className="w-[150px]" />
-                </a>
-                <div className="w-full max-w-[400px] ml-16">
+          </a>
+        <div className="w-full max-w-[400px] ml-16">
           <h1 className="text-3xl font-bold mb-2">Sign up</h1>
-          <p className="text-gray-500 mb-6">
+          <p className="text-gray-500  mb-6">
           Sign up to enjoy the feature of Revolutie
           </p>
 
           {/* Form */}
-          <form className="space-y-3.5">
+          <form  className="space-y-3.5">
              {/* NAME Input */}
              <div>
-              <Label htmlFor="email" className="text-gray-700 mb-2 block">
+              <Label htmlFor="name" className="text-gray-700 mb-2 block">
                 Your name
               </Label>
               <Input
-                id="email"
-                type="date"
-                placeholder="Enter your email"
+                id="name"
+                type="text"
+                placeholder="Enter your name"
                 className="w-full border rounded-lg px-4 py-[22px]"
               />
             </div>
@@ -75,7 +75,7 @@ export const Signup = () => {
            
 
             {/* Sign-In Button */}
-            <Button className="bg-[#367AFF] text-white w-full py-[22px] rounded-lg font-medium">
+            <Button  className="bg-[#367AFF] text-white w-full py-[22px] rounded-lg font-medium">
               Sign up
             </Button>
 
@@ -99,7 +99,7 @@ export const Signup = () => {
             {/* Sign Up Link */}
             <p className="text-gray-600 text-center mt-4">
             Already have an account?{" "}
-              <a href="/signup" className="text-blue-600 underline font-medium">
+              <a href="/login" className="text-blue-600 underline font-medium">
               Sign in
               </a>
             </p>

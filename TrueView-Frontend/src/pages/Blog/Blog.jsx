@@ -21,7 +21,7 @@ export const Blog = () => {
     
     <div className="container mx-auto flex justify-between items-center p-4">
       <div className="flex items-center space-x-8">
-        <a href="/Home" >
+        <a href="/" >
           <img src={logo} alt="TrueView-logo" className="w-[150px]" />
         </a>
         <nav className="flex space-x-6">
@@ -32,10 +32,10 @@ export const Blog = () => {
         </nav>
       </div>
       <div className="flex space-x-2">
-        <a href="" className="bg-white text-blue-600 px-4 py-2 rounded border border-blue-600 hover: border-black">
+        <a href="/signup" className="bg-white text-blue-600 px-4 py-2 rounded border border-blue-600 hover:border-black">
           Get a demo
         </a>
-        <a href="/Login" className="bg-blue-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700">
+        <a href="/signup" className="bg-blue-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700">
           Register
         </a>
       </div>

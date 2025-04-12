@@ -7,6 +7,7 @@ import { Home } from './pages/Home/Home';
 import { Signup } from './pages/SignUp/Signup';
 import { Blog } from './pages/Blog/Blog';
 import { Profile } from './pages/Profile/Profile';
+import { Checker } from './pages/Checker/Checker';
 
 function App() {
   useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/checker" element={<Checker />} />
             <Route path="*" element={<h2>404 - Page Not Found</h2>} />
           </Routes>
         </div>

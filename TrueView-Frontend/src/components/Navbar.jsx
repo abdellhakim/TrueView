@@ -91,12 +91,17 @@ const Navbar = () => {
 
        {/* Right Section (CTA Buttons) */}
         <div className="ml-auto flex space-x-4">
-          <button className="border border-blue-600 text-blue-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105">
-            Get a demo
-          </button>
-          <button className="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105">
-            Register
-          </button>
+            <Link to="/signup" className="hover:text-blue-500">
+              <button className="border border-blue-600 text-blue-600 font-bold px-4 py-2 rounded-lg hover:cursor-pointer transition-transform duration-300 hover:scale-105">
+                Get a demo
+              </button>
+                
+            </Link>
+              <Link to="/signup" className="hover:text-white">
+              <button className="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg transition-transform hover:cursor-pointer duration-300 hover:scale-105">
+                Register
+              </button>
+              </Link>
         </div>
       </div>
     </nav>
