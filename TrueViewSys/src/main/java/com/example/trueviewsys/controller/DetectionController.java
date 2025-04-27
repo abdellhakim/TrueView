@@ -1,31 +1,22 @@
 package com.example.trueviewsys.controller;
 
-import com.example.trueviewsys.service.RacismDetectionPipeline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.example.trueviewsys.dto.TextRequest;
+import com.example.trueviewsys.service.TextClassificationService;
 
 @RestController
 @RequestMapping("/api")
 public class DetectionController {
-    
-    private final RacismDetectionPipeline pipeline;
-    
+    private final TextClassificationService textClassificationService;
+
     @Autowired
-    public DetectionController(RacismDetectionPipeline pipeline) {
-        this.pipeline = pipeline;
+    public DetectionController(TextClassificationService textClassificationService) {
+        this.textClassificationService = textClassificationService;
     }
-    
-    @PostMapping("/detect")
-    public String detect(@RequestBody String text) {
-        try {
-            return pipeline.predict(text);
-        } catch (Exception e) {
-            return "ERREUR: " + e.getMessage();
-        }
-    }
-    
-    @GetMapping("/status")
-    public String status() {
-        return "Service actif - Prêt à analyser";
+
+    @PostMapping("/classifyText")
+    public String classifyText(@RequestBody TextRequest request) {
+        return textClassificationService.classify(request.getText());
     }
 }

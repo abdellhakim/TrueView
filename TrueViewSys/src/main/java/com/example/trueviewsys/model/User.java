@@ -2,6 +2,7 @@ package com.example.trueviewsys.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
@@ -9,15 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
-
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String provider; // LOCAL or GOOGLE
+    private String provider;
     private String username;
     private String email;
     private String password;
     private String role;
+    private LocalDate dateOfBirth;
 }
