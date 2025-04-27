@@ -5,6 +5,7 @@ import com.example.trueviewsys.dto.LoginRequest;
 import com.example.trueviewsys.dto.AuthResponse;
 import com.example.trueviewsys.model.User;
 import com.example.trueviewsys.repository.UserRepository;
+import com.example.trueviewsys.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final JwtUtil jwtUtil; // ✅ Injected as a dependency
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService {
                 .password("LOCAL".equalsIgnoreCase(request.getProvider()) ?
                         passwordEncoder.encode(request.getPassword()) : request.getPassword())
                 .role("USER")
+                .dateOfBirth(request.getDateOfBirth())
                 .build();
 
         userRepository.save(user);
@@ -44,7 +47,9 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        // JWT to be added later
-        return new AuthResponse("Login successful", null);
+
+        String token = jwtUtil.generateToken(user.getEmail());
+
+        return new AuthResponse("Login successful", token);
     }
 }

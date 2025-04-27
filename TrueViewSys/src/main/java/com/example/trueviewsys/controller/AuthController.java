@@ -4,6 +4,7 @@ import com.example.trueviewsys.dto.RegisterRequest;
 import com.example.trueviewsys.dto.LoginRequest;
 import com.example.trueviewsys.dto.AuthResponse;
 import com.example.trueviewsys.service.UserService;
+import com.example.trueviewsys.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
-            return ResponseEntity.ok(userService.loginUser(request));
+            AuthResponse authResponse = userService.loginUser(request);
+            return ResponseEntity.ok(authResponse);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new AuthResponse(e.getMessage(), null));
         }
