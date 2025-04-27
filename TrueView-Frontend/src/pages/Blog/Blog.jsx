@@ -1,161 +1,130 @@
-import React, { useState } from "react";
-import logo from "../../assets/logo.png";
-import postcard from "../../assets/postcard.png";
-import Rectangle38 from "../../assets/Rectangle 38.png";
-
-
-
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from '../../components/Navbar';
+import sparkleIcon from "../../assets/AI.png";
+import bgImage from "../../assets/Grid.png";
 
 export const Blog = () => {
-  const [visiblePosts, setVisiblePosts] = useState(6);
+  const [articles, setArticles] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(6);
 
-  // Fonction pour charger plus d'articles
-  const loadMorePosts = () => {
-    setVisiblePosts(prevVisiblePosts => prevVisiblePosts + 3);
-  }
+  useEffect(() => {
+    fetch("http://localhost:8080/api/news")
+      .then((res) => res.json())
+      .then((data) => setArticles(data))
+      .catch((err) => console.error("Failed to fetch articles", err));
+  }, []);
 
-  
+  const loadMore = () => {
+    setVisibleCount((prev) => prev + 6);
+  };
+
+  const featuredArticle = articles[0];
+  const otherArticles = articles.slice(1, visibleCount + 1);
+
   return (
     <div className="font-sans">
-    {/* En-tête */}
-    
-    <div className="container mx-auto flex justify-between items-center p-4">
-      <div className="flex items-center space-x-8">
-        <a href="/" >
-          <img src={logo} alt="TrueView-logo" className="w-[150px]" />
-        </a>
-        <nav className="flex space-x-6">
-          <a href="#" className="text-gray-700 hover:text-blue-600">Features</a>
-          <a href="#" className="text-gray-700 hover:text-blue-600">Blog</a>
-          <a href="#" className="text-gray-700 hover:text-blue-600">Pricing</a>
-          <a href="#" className="text-gray-700 hover:text-blue-600">FAQ</a>
-        </nav>
-      </div>
-      <div className="flex space-x-2">
-        <a href="/signup" className="bg-white text-blue-600 px-4 py-2 rounded border border-blue-600 hover:border-black">
-          Get a demo
-        </a>
-        <a href="/signup" className="bg-blue-600 text-white px-4 py-2 rounded border border-blue-600 hover:bg-blue-700">
-          Register
-        </a>
-      </div>
-    </div>
+      <Navbar />
 
-
-    {/* Section principale - Blog */}
-    <main className="mx-auto max-w-[1400px] p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Blog</h1>
-
-      {/* Bannière principale */}
-      <div className="relative mb-8">
-        <a href="#">
-          <img src={postcard} alt="postcard" className="w-full h-[500px] object-cover rounded-lg" />
-        </a>
-
-        {/* Superposition de contenu */}
-        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 text-white rounded-lg">
-          {/* Badge Technology */}
-          <span className="bg-blue-500 text-white px-3 py-1 text-sm rounded-md">Technology</span>
-
-          {/* Titre de l'article */}
-          <h2 className="text-2xl font-bold mt-2">The Impact of Technology on the Workplace: How Technology is Changing</h2>
-
-          {/* Infos de l'auteur */}
-          <div className="flex items-center text-gray-300 mt-2">
-            <img src="https://via.placeholder.com/40" alt="Author" className="w-6 h-6 rounded-full border border-white" />
-            <span className="ml-2">Tracey Wilson</span>
-            <span className="ml-4">August 20, 2022</span>
+      <main className="mx-auto max-w-[1400px]">
+        {/* Header Section */}
+        <section
+          className="flex flex-col items-center justify-center text-center h-[70vh] pt-20 bg-cover bg-center"
+          style={{ backgroundImage: `url(${bgImage})` }}
+        >
+          <div data-aos="fade-up">
+            <span className="text-md bg-white px-4 py-2 rounded-full inline-flex items-center space-x-2 border border-gray-300 shadow-md">
+              <img src={sparkleIcon} alt="sparkle icon" className="h-4 w-4" />
+              <span className="text-[#4B5162] font-semibold text-sm">Explore verified articles</span>
+            </span>
           </div>
-        </div>
-      </div>
+          <div data-aos="fade-up" data-aos-delay="300">
+            <h1 className="text-5xl font-bold mb-6 text-center mt-6">Blog</h1>
+          </div>
+        </section>
 
-      {/* Liste des articles */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[...Array(visiblePosts)].map((_, i) => (
-          <div key={i} className="bg-white shadow rounded-lg overflow-hidden">
-            <img src={Rectangle38} alt="Blog Post" className="w-full h-48 object-cover"/>
-            <div className="p-4">
-              <span className="text-sm text-blue-600">Technology</span>
-              <h3 className="text-xl font-bold mt-2">The Impact of Technology on the Workplace</h3>
-              <div className="flex items-center text-gray-600 mt-2">
-                <img src="https://via.placeholder.com/40" alt="Author" className="w-6 h-6 rounded-full"/>
-                <span className="ml-2">John Doe</span>
-                <span className="ml-4">October 10, 2023</span>
-              </div>
+        {/* Featured Article Section */}
+        {featuredArticle && (
+          <section className="relative mb-10 px-6 md:px-20">
+            <div className="relative w-full h-[450px] rounded-xl overflow-hidden">
+              <Link
+                to={`/article/0`}
+                state={{ article: featuredArticle }}
+                className="block w-full h-full"
+              >
+                <img
+                  src={featuredArticle.urlToImage || "https://via.placeholder.com/1200x600"}
+                  alt={featuredArticle.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white flex flex-col justify-end">
+                  <span className="bg-yellow-500 text-black px-3 py-1 text-sm rounded-md w-fit">Featured</span>
+                  <h2 className="text-3xl md:text-4xl font-bold mt-2">{featuredArticle.title}</h2>
+                  <div className="flex items-center text-gray-300 mt-2 text-sm">
+                    <img src="https://via.placeholder.com/40" alt="Author" className="w-6 h-6 rounded-full border border-white" />
+                    <span className="ml-2">
+                      {(!featuredArticle.author || featuredArticle.author.trim().toLowerCase() === "author")
+                        ? "Unknown"
+                        : featuredArticle.author.trim()}
+                    </span>
+
+                    <span className="ml-4">{new Date(featuredArticle.publishedAt).toLocaleDateString()}</span>
+                  </div>
+                </div>
+              </Link>
             </div>
+          </section>
+        )}
+
+        {/* Grid of Articles */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 md:px-20">
+          {otherArticles.map((article, i) => (
+            <Link
+              key={i}
+              to={`/article/${i + 1}`}
+              state={{ article }}
+              className="bg-white shadow rounded-lg overflow-hidden transition hover:scale-105 duration-200"
+            >
+              <img
+                src={article.urlToImage || "https://via.placeholder.com/400x200"}
+                alt={article.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <span className="text-sm text-blue-600">{article.source?.name || "News"}</span>
+                <h3 className="text-xl font-bold mt-2">{article.title}</h3>
+                <div className="flex items-center text-gray-600 mt-2 text-sm">
+                  <img src="https://via.placeholder.com/40" alt="Author" className="w-6 h-6 rounded-full" />
+                  <span className="ml-2">
+                    {(!article.author || article.author.trim().toLowerCase() === "author")
+                      ? "Unknown"
+                      : article.author.trim()}
+                  </span>
+
+                  <span className="ml-4">{new Date(article.publishedAt).toLocaleDateString()}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Load More */}
+        {visibleCount + 1 < articles.length && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={loadMore}
+              className="bg-white text-gray-600 px-6 py-2 rounded border hover:bg-blue-700 hover:text-white"
+            >
+              Load More
+            </button>
           </div>
-        ))}
-      </div>
+        )}
+      </main>
 
-      {/* Bouton de chargement */}
-      <div className="flex justify-center mt-8">
-        <button onClick={loadMorePosts} className="bg-white text-gray-600 px-6 py-2 rounded border  hover:bg-blue-700 hover:text-white">Load More</button>
-      </div>
-    </main>
-
-    {/* Pied de page */}
-    <footer class="bg-white-100 text-gray-700 py-10">
-
-      <div class="w-full border-t border-gray-300 mt-8 pt-4 mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-{/*           
-          <!-- About Section --> */}
-          <div>
-              <h4 class="text-lg font-semibold mb-3">About TrueView</h4>
-              <ul class="space-y-2">
-                  <li><a href="#" class="hover:underline">Company Overview</a></li>
-                  <li><a href="#" class="hover:underline">Careers</a></li>
-                  <li><a href="#" class="hover:underline">Press & Media</a></li>
-                  <li><a href="#" class="hover:underline">Testimonials</a></li>
-              </ul>
-          </div>
-
-          {/* <!-- Resources Section --> */}
-          <div>
-              <h4 class="text-lg font-semibold mb-3">Resources</h4>
-              <ul class="space-y-2">
-                  <li><a href="#" class="hover:underline">Blog</a></li>
-                  <li><a href="#" class="hover:underline">Help Center</a></li>
-                  <li><a href="#" class="hover:underline">Webinars & Events</a></li>
-                  <li><a href="#" class="hover:underline">Case Studies</a></li>
-              </ul>
-          </div>
-
-          {/* <!-- Support & Contact Section --> */}
-          <div >
-              
-              <h4 class="text-lg font-semibold mb-3">Support & Contact</h4>
-              <ul class="space-y-2">
-                  <li><a href="#" class="hover:underline">Contact Us</a></li>
-                  <li><a href="#" class="hover:underline">Technical Support</a></li>
-                  <li><a href="#" class="hover:underline">Feedback</a></li>
-                  <li><a href="#" class="hover:underline">Community Forum</a></li>
-              </ul>
-          </div>
-
-          {/* <!-- Social Media Section --> */}
-          <div>
-              <h4 class="text-lg font-semibold mb-3">Connect</h4>
-              <ul class="space-y-2">
-                  <li><a href="https://www.instagram.com/" class="flex items-center space-x-2 hover:underline"><span>📷</span> <span>Instagram</span></a></li>
-                  <li><a href="https://www.facebook.com/" class="flex items-center space-x-2 hover:underline"><span>📘</span> <span>Facebook</span></a></li>
-                  <li><a href="https://x.com/?lang=fr" class="flex items-center space-x-2 hover:underline"><span>✖</span> <span>Twitter / X</span></a></li>
-                  <li><a href="https://www.linkedin.com/" class="flex items-center space-x-2 hover:underline"><span>💼</span> <span>LinkedIn</span></a></li>
-              </ul>
-          </div>
-
-      </div>
-
-      {/* <!-- Footer Bottom Section --> */}
-      <div class="mt-8 border-t border-gray-300 pt-4 ">
-          <p class="text-sm">©2025 TrueView - All rights reserved.</p>
-          <div class="mt-2 flex justify-end space-x-4 text-sm">
-              <a href="#" class="hover:underline">Term of use</a>
-              <a href="#" class="hover:underline">Privacy policy</a>
-              <a href="#" class="hover:underline">Security</a>
-          </div>
-      </div>
-    </footer>
-
-  </div>
-  )
-}
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white text-center py-6 mt-16">
+        <p>©2025 TrueView. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+};

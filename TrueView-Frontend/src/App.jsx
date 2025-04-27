@@ -8,6 +8,7 @@ import { Signup } from './pages/SignUp/Signup';
 import { Blog } from './pages/Blog/Blog';
 import { Profile } from './pages/Profile/Profile';
 import { Checker } from './pages/Checker/Checker';
+import ArticleDetail from "./pages/ArticleDetail/ArticleDetail";
 
 function App() {
   useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/checker" element={<Checker />} />
+            <Route path="/article/:index" element={<ArticleDetail />} />
             <Route path="*" element={<h2>404 - Page Not Found</h2>} />
           </Routes>
         </div>

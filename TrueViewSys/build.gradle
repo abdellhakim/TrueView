@@ -36,9 +36,11 @@ dependencies {
     // MySQL Driver (si vous utilisez MySQL)
     runtimeOnly 'com.mysql:mysql-connector-j'
 
-    // Pour netlib (si utilisé pour calculs BLAS/Linear Algebra)
-    // Exclure si non utilisé
-    // implementation 'com.github.fommil.netlib:all:1.1.2'
+
+    implementation 'org.jsoup:jsoup:1.17.2'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 }
 
 tasks.named('test') {
@@ -69,9 +71,6 @@ configurations {
 
 apply plugin: 'application'
 
-// application {
-//     mainClass = 'com.example.trueviewsys.TestClassification'
-// }
 
 task trainModel(type: JavaExec) {
     group = 'ml'
