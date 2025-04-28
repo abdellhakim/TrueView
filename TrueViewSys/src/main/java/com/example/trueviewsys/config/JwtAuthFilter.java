@@ -19,7 +19,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final JwtUtil jwtUtil; // ✅ Injected JwtUtil instance
+    private final JwtUtil jwtUtil; 
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

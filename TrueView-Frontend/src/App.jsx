@@ -10,6 +10,7 @@ import Profile from './pages/Profile/Profile';
 import { Checker } from './pages/Checker/Checker';
 import PrivateRoute from './routes/PrivateRoute';
 import { AuthProvider } from './context/AuthContext';
+import ArticleDetail from "./pages/ArticleDetail/ArticleDetail";
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/blog" element={<Blog />} />
+            <Route path="/article/:index" element={<ArticleDetail />} />
               <Route path="/profile" element={
                 <PrivateRoute>
                   <Profile />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ChevronDown } from "lucide-react"; // Import arrow icon
 import logo from "../../src/assets/logo.png";
@@ -12,6 +12,8 @@ const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null); // Store user details
   let lastScrollY = window.scrollY;
+
+  const navigate = useNavigate(); // Navigate hook
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -61,6 +63,7 @@ const Navbar = () => {
     localStorage.removeItem("token"); // Clear token
     setIsAuthenticated(false); // Reset authentication state
     setUser(null); // Reset user details
+    navigate("/"); // Redirect to home page
   };
 
   return (
@@ -113,8 +116,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/pricing" className="hover:text-blue-500">
-                Pricing
+              <Link to="/checker" className="hover:text-blue-500">
+              Checker
               </Link>
             </li>
             <li>
@@ -151,11 +154,11 @@ const Navbar = () => {
               {/* Dropdown Menu */}
               {isProfileDropdownOpen && (
                 <ul className="absolute right-0 mt-2 w-48 bg-white shadow-lg border rounded-lg py-2">
-                  <li className="px-4 py-2 hover:bg-gray-100">
+                  <li className="px-4 py-2 cursor-pointer hover:bg-gray-100">
                     <Link to="/profile">Profile</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-100">
-                    <button onClick={handleLogout}>Logout</button>
+                  <li className="px-4 py-2 cursor-pointer hover:bg-gray-100">
+                    <button  onClick={handleLogout}>Logout</button>
                   </li>
                 </ul>
               )}
