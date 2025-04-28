@@ -98,14 +98,12 @@ const Navbar = () => {
               {isFeaturesDropdownOpen && (
                 <ul className="absolute left-0 mt-2 w-48 bg-white shadow-lg border rounded-lg py-2">
                   <li className="px-4 py-2 hover:bg-gray-100">
-                    <Link to="/feature1">Feature 1</Link>
+                    <Link to="/feature1">News Consultation</Link>
                   </li>
                   <li className="px-4 py-2 hover:bg-gray-100">
-                    <Link to="/feature2">Feature 2</Link>
+                    <Link to="/feature2">Racism Detection</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-100">
-                    <Link to="/feature3">Feature 3</Link>
-                  </li>
+                  
                 </ul>
               )}
             </li>
@@ -121,9 +119,20 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/faq" className="hover:text-blue-500">
-                FAQ
-              </Link>
+              {/* <a className="hover:text-blue-500" href="#faq">FAQ</a> */}
+              <Link 
+  to="/" 
+  onClick={() => {
+    setTimeout(() => {
+      const faqSection = document.getElementById("faq");
+      faqSection?.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Small timeout to wait for navigation
+  }}
+  className="hover:text-blue-500"
+>
+  FAQ
+</Link>
+
             </li>
           </ul>
         </div>
@@ -157,17 +166,19 @@ const Navbar = () => {
                   <li className="px-4 py-2 cursor-pointer hover:bg-gray-100">
                     <Link to="/profile">Profile</Link>
                   </li>
-                  <li className="px-4 py-2 cursor-pointer hover:bg-gray-100">
-                    <button  onClick={handleLogout}>Logout</button>
+                  <li className="px-4 py-2  hover:bg-gray-100">
+                    <button className="cursor-pointer" onClick={handleLogout}>Logout</button>
                   </li>
                 </ul>
               )}
             </div>
           ) : (
             <>
+              <Link to="/checker">
               <button className="cursor-pointer border border-blue-200 text-blue-500 font-bold text-sm px-7 py-3 rounded-md transition-transform duration-300 hover:scale-105">
                 Get a demo
               </button>
+              </Link>
               <Link to="/signup">
                 <button
                   style={{ backgroundColor: "#387FF5" }}

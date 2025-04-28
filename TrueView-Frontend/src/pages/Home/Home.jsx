@@ -70,7 +70,7 @@ export const Home = () => {
         </div>
         <div data-aos="fade-up" data-aos-delay="600">
           <p className="text-[#4B5162] max-w-2xl mt-4">
-            Analyze news articles and links to evaluate their credibility using AI-powered text <br /> analysis and source verification.
+          Online News Consultation and Racism Detection in Texts <br />
           </p>
         </div>
         <div className="mt-12 flex flex-wrap gap-4">
@@ -105,7 +105,7 @@ export const Home = () => {
         </div>
         <div data-aos="fade-up" data-aos-delay="300">
           <p className="text-[#4B5162] max-w-3xl mx-auto mt-4">
-            TrueView helps you detect misinformation and evaluate news credibility <br /> in real-time, ensuring you stay informed with reliable information.
+            TrueView displays verified information and assists in detecting racist language in texts.<br /> helping users avoid harmful or offensive content
           </p>
         </div>
         <div className="mt-8 space-x-4">
@@ -123,13 +123,13 @@ export const Home = () => {
         <div className="grid md:grid-cols-3 gap-6 mt-26 max-w-6xl mx-auto w-full px-4">
           <FeatureCard
             icon={Icon3}
-            title="AI-Powered Analysis"
-            text="Harness the unmatched power of artificial intelligence with TrueView. Our NLP-driven engine deeply analyzes text to detect biases, misinformation patterns, and credibility risks."
+            title="AI-Driven Racism Detection"
+            text="Leverage the power of machine learning with TrueView. Our custom-trained ML model analyzes text to accurately detect signs of racism, helping create a safer and more respectful digital environment."
           />
           <FeatureCard
             icon={Icon2}
-            title="Cross-Source Verification"
-            text="TrueView seamlessly integrates with fact-checking platforms like Google Fact Check API and other trusted databases to verify news sources and claims."
+            title="Cross-Platform Verification & Content Safeguarding"
+            text="TrueView seamlessly combines trusted news sources with advanced racism detection. Our system cross-references reputable fact-checking databases and news outlets while employing a robust ML model to identify racist language, ensuring you access verified, respectful, and accurate information."
           />
           <FeatureCard
             icon={Icon1}
@@ -196,7 +196,7 @@ export const Home = () => {
 
 
       {/* FAQ Section */}
-      <section className="my-20 px-8 max-w-4xl mx-auto mt-45">
+      <section id="faq" className="my-20 px-8 max-w-4xl mx-auto mt-45">
         <div className="flex items-center space-x-8 mb-10">
           <span className="text-md bg-white px-4 py-2 rounded-full inline-flex items-center space-x-2 border border-gray-300 shadow-md">
             <img src={sparkleIcon} alt="sparkle icon" className="h-4 w-4" />
@@ -211,37 +211,26 @@ export const Home = () => {
               What is TrueView?
             </summary>
             <p className="text-gray-600 mt-2">
-              TrueView is an AI-powered Fake News Detection platform that analyzes news content, checks sources, 
-              and provides real-time credibility ratings using machine learning and web scraping.
+            TrueView is an AI-powered platform that analyzes news content, detects racism in text, verifies sources, and offers real-time credibility insights using machine learning and web scraping.
             </p>
           </details>
 
           <details className="group rounded-lg p-4 hover:shadow-md transition">
             <summary className="cursor-pointer font-semibold text-lg text-gray-800 group-open:text-blue-600">
-              How does TrueView verify news credibility?
+            How does TrueView ensure safe and reliable content?
             </summary>
             <p className="text-gray-600 mt-2">
-              We use Natural Language Processing (NLP), web scraping (Jsoup), and third-party fact-checking APIs 
-              to analyze content for biases, inconsistencies, and reliability.
+            TrueView ensures safe and reliable content by using a machine learning model (SVM) to detect racism in text. 
+            NewsAPI is used to retrieve and display verified news from trusted sources.
             </p>
           </details>
 
           <details className="group rounded-lg p-4 hover:shadow-md transition">
             <summary className="cursor-pointer font-semibold text-lg text-gray-800 group-open:text-blue-600">
-              Can I analyze any article or social media post?
+              Can I detect racism in any text or article?
             </summary>
             <p className="text-gray-600 mt-2">
-              Yes! Simply paste the article URL or text into TrueView, and our system will analyze it 
-              for credibility and accuracy.
-            </p>
-          </details>
-
-          <details className="group rounded-lg p-4 hover:shadow-md transition">
-            <summary className="cursor-pointer font-semibold text-lg text-gray-800 group-open:text-blue-600">
-              Does TrueView store my data?
-            </summary>
-            <p className="text-gray-600 mt-2">
-              No, TrueView does not store user data or analyzed content. Your privacy and security are our priorities.
+            Yes! Simply paste the text into TrueView, and the system will analyze it for racist language using a machine learning model and classify it accordingly.
             </p>
           </details>
 

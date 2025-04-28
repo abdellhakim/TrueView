@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -31,8 +32,10 @@ const ArticleDetail = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-6">
+      <Navbar/>
+
       {/* Hero Section */}
-      <div className="bg-white shadow-lg rounded-lg p-6 mb-10 max-w-4xl mx-auto">
+      <div className="bg-white shadow-lg rounded-lg p-6 mb-10 max-w-4xl mt-20 mx-auto">
         <h1 className="text-5xl font-extrabold text-gray-900 mb-4">{article.title}</h1>
         <div className="flex justify-between items-center text-gray-600 mb-6">
           <p className="text-lg">{article.author || "Unknown Author"}</p>
